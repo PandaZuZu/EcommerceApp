@@ -1,0 +1,23 @@
+<%= form_for @new_user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.submit "Create account" %>
+
+  <br/>
+  <% if @new_user.errors.any? %>
+    <ul>
+      <% @new_user.errors.full_messages.each do |msg| %>
+      <li style="color: red">
+        <%= msg %>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<% end %>
