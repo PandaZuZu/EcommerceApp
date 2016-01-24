@@ -2,12 +2,14 @@
   <%= f.label :username %>
   <%= f.text_field :username %>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password_field %>
   <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_field_confirmation %>
   <%= f.label :email %>
   <%= f.text_field :email %>
   <%= f.submit "Create account" %>
+  <br/>
+  <%= link_to('Already have account? Login here!', action: 'login') %>
 
   <br/>
   <% if @new_user.errors.any? %>

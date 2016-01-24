@@ -1,15 +1,15 @@
 class User < ActiveRecord::Base
 
 
-  attr_accessor :password
-
+  attr_accessor :password_field
+  validates_confirmation_of :password_field
   before_save :encrypt_password
   after_save :clear_password
 
   def encrypt_password
-    if password.present?
+    if password_field.present?
       self.salt = BCrypt::Engine.generate_salt
-      self.password = BCrypt::Engine.hash_secret(password, salt)
+      self.password = BCrypt::Engine.hash_secret(password_field, salt)
     end
   end
 
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def match_password(login_password = '')
-    encrypt_password == BCrypt::Engine.hash_secret(login_password, salt)
+    self.password == BCrypt::Engine.hash_secret(login_password, salt)
   end
 
   validates :username,
@@ -49,8 +49,7 @@ class User < ActiveRecord::Base
               :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
             }
 
-  validates :password,
-            :confirmation => true,
+  validates :password_field,
             :length =>{
               :minimum => 6,
             }
