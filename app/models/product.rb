@@ -1,4 +1,9 @@
 class Product < ActiveRecord::Base
+  attr_accessor :pictures
+  serialize :pictures
+
+  mount_uploaders :pictures, ThumbsUploader
+
   validates :name,
             :presence => true,
             :format => {
@@ -13,12 +18,19 @@ class Product < ActiveRecord::Base
               :with => /^[A-z0-9]+$/
             }
 
-  validates :picture,
+  validates :pictures,
             :presence => true
 
   validates :quantity,
-            :presence => true
+            :presence => true,
+            :numericality => {
+              :greater_than_or_equal_to => 0
+            }
 
   validates :price,
-            :presence => true
+            :presence => true,
+            :numericality => {
+              :greater_than_or_equal_to => 0
+            }
+
 end

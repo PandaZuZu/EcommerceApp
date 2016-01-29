@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'home#logout'
   post '/create', to: 'home#create'
   root 'home#index'
-
+  get 'product/new', to: 'product#new', as: 'products'
+  post 'product/new', to: 'product#create'
+  get 'product/update', to: 'product#update'
 
 end

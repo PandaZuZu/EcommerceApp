@@ -1,3 +1,30 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.logo{
+  position: relative;
+  left: 35%;
+  width: 30%;
+  height: 20%;
+}
+
+.product_container{
+  position: relative;
+  float: none;
+  margin: 2em 1em 1em 1em;
+}
+
+.product_thumb{
+  position: relative;
+  text-align: center;
+  float: left;
+  margin: 0.5em 1em 0.5em 1em;
+  background-color: #CCC;
+  width: 15%;
+}
+
+.product_thumb_desc{
+  text-align: left;
+  margin: 5px 10px 5px 10px;
+}

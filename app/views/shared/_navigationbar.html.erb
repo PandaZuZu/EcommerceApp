@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Panda</a>
+    <div class="navbar-header" style='position:absolute; left:45%'>
+      <a class="navbar-brand" href="/">Ecommerce</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+<!--      <ul class="nav navbar-nav">
         <li><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
@@ -29,18 +29,41 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
+-->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+
+        <!-- right side of nav -->
+        <% if session[:user_id] == nil %>
+          <li><%= link_to('Login', controller: 'home', action: 'login') %></li>
+        <!-- right dropdown menu -->
+        <% else %>
+          <!-- admin panel -->
+          <% if (User.find_by id: session[:user_id]).is_admin %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to('Add product', controller: 'product', action: 'new') %></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><%= link_to('Logout', controller: 'home', action: 'logout') %></li>
+              </ul>
+            </li>
+          <% else %>
+            <!-- user panel -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to('Edit account', controller: 'product', action: 'new') %></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><%= link_to('Logout', controller: 'home', action: 'logout') %></li>
+              </ul>
+            </li>
+          <% end %>
+        <% end %>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

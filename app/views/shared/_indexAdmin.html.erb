@@ -1,0 +1,15 @@
+<div class='product_container'>
+  <% @products.each do |product| %>
+  <div class='product_thumb'>
+    <%= image_tag(product.pictures[0], size: '100x100') %>
+    <br>
+    <%= label_tag product.name %>
+    <br>
+    <div class="product_thumb_desc">
+      <%= product.description%>
+    </div>
+    <br>
+    <%= link_to 'edit', controller: 'product', action: 'update', product_id: product.id %>
+  </div>
+  <% end %>
+</div>

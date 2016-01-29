@@ -3,7 +3,10 @@ class HomeController < ApplicationController
   before_filter :save_login_state, :only => [:create, :register, :login, :login_attempt]
 
   def index
-
+    @products = Product.all
+    if session[:user_id]
+      @current_user = User.find session[:user_id]
+    end
   end
 
   def register
@@ -12,6 +15,7 @@ class HomeController < ApplicationController
 
   def create
     @new_user = User.new(register_params)
+    @new_user.is_admin = false
     if @new_user.save
       flash[:notice] = "Account " + @new_user.username.to_s + " was successfuly created!"
       redirect_to :action => 'login'
@@ -26,15 +30,12 @@ class HomeController < ApplicationController
   end
 
   def login_attempt
-    myUser = User.find_by username: params[:username]
-    flash[:notice] = myUser.username
-
     authorized_user = User.authenticate(params[:username], params[:login_password])
     if authorized_user
       session[:user_id] = authorized_user.id
       redirect_to action: 'index'
     else
-      flash[:notice] = 'Invalid username or password!' + myUser.password.to_s
+      flash[:notice] = 'Invalid username or password!'
       render 'login'
     end
   end

@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-
   attr_accessor :password_field
   validates_confirmation_of :password_field
   before_save :encrypt_password
@@ -32,6 +31,7 @@ class User < ActiveRecord::Base
   end
 
   validates :username,
+            :presence => true,
             :uniqueness => true,
             :format => {
               :multiline => true,

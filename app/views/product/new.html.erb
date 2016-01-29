@@ -1,0 +1,31 @@
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_for @new_product, html: { multipart: true } do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br/>
+  <%= f.label :description %>
+  <%= f.text_field :description %><br/>
+  <%= f.label :picture %>
+  <%= f.file_field :pictures, multiple: true %><br/>
+  <%= f.label :quantity %>
+  <%= f.text_field :quantity %><br/>
+  <%= f.label :price %>
+  <%= f.text_field :price %><br/>
+
+  <%= f.submit 'Create' %>
+
+  <br/>
+  <% if @new_product.errors.any? %>
+    <ul>
+      <% @new_product.errors.full_messages.each do |msg| %>
+      <li style="color: red">
+        <%= msg %>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<% end %>
