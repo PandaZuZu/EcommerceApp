@@ -43,8 +43,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><%= link_to('Add product', controller: 'product', action: 'new') %></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><%= link_to('All orders', controller: 'product', action: 'view_orders') %></li>
                 <li class="divider"></li>
                 <li><%= link_to('Logout', controller: 'home', action: 'logout') %></li>
               </ul>
@@ -54,9 +53,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><%= link_to('Edit account', controller: 'product', action: 'new') %></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><%= link_to('View cart', controller: 'product', action: 'view_cart') %></li>
                 <li class="divider"></li>
                 <li><%= link_to('Logout', controller: 'home', action: 'logout') %></li>
               </ul>

@@ -1,0 +1,29 @@
+<div class="middle_content">
+  <div class="title">
+    <%= @product.name %>
+  </div>
+  <div class="description">
+    <%= @product.description %>
+  </div>
+  <div class="photo">
+    <% @product.pictures.each do |p| %>
+    <%= image_tag(p, size:"200x200") %>
+    <% end %>
+  </div>
+  <div class='shopping-box'>
+    <div class="quantity">
+      Available
+      <%= @product.quantity %>
+    </div>
+    <div class="buy">
+      Buy
+      <%= buy = @buy_units %>
+      <%= button_to '+', action: 'add', add: buy, product_id: @product.id %>
+    </div>
+    <div class="price">
+      Total Price
+      <%= @product.price * buy %>$
+      <%= button_to 'Buy', action: 'buy', buy_units: buy, product_id: @product.id %>
+    </div>
+  </div>
+</div>

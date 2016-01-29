@@ -6,10 +6,14 @@
     <%= label_tag product.name %>
     <br>
     <div class="product_thumb_desc">
-      <%= product.description%>
+      <%= truncate(product.description, length: 200) %>
     </div>
     <br>
-    <%= link_to 'edit', controller: 'product', action: 'update', product_id: product.id %>
+    <%= link_to 'edit', controller: 'product', action: 'edit', product_id: product.id %>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <%= link_to 'remove', product_destroy_path(product.id), method: :delete, data: { confirm: 'Are you sure?' }  %>
   </div>
   <% end %>
 </div>

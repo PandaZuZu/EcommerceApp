@@ -1,0 +1,22 @@
+<div class="middle_content">
+
+  <% @total = 0 %>
+  <% @orders.each do |o| %>
+  <% o.products.each do |p| %>
+    <div class="cart_left">
+      <%= p.name %>
+    </div>
+    <div class="cart_right">
+      <% @total = @total + p.units * p.price %>
+      <%= p.units %> x <%= p.price %>
+    </div>
+  <% end %>
+  <br>
+  <% end %>
+  <hr>
+  <div class="cart_right">
+    Total <%= @total %>$
+    <br>
+    <%= button_to 'Check Out', controller: 'product', action: 'check_out' %>
+  </div>
+</div>

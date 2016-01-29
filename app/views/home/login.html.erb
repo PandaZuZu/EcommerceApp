@@ -1,8 +1,9 @@
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-<% end %>
 
 <%= form_tag action: 'login_attempt' do %>
+<div class="form">
+  <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
   <%= label_tag :username %>
   <%= text_field_tag :username %><br/>
   <%= label_tag :password %>
@@ -10,4 +11,5 @@
 
   <%= submit_tag 'Log In' %><br/>
   <%= link_to('No account? Register here!', action: 'register') %>
+</div>
 <% end %>

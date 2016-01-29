@@ -1,9 +1,4 @@
-
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-<% end %>
-
-<%= form_for @new_product, html: { multipart: true } do |f| %>
+<%= form_for @product do |f| %>
 <div class='form'>
   <table>
     <tr>
@@ -20,14 +15,6 @@
       </td>
       <td>
         <%= f.text_area :description, size:'18x5' %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.label :picture %>
-      </td>
-      <td>
-        <%= f.file_field :pictures, multiple: true %><br/>
       </td>
     </tr>
     <tr>
@@ -49,21 +36,9 @@
     <tr>
       <td colspan="2">
         <br>
-        <%= f.submit 'Create' %>
-
-        <br/>
-        <% if @new_product.errors.any? %>
-          <ul>
-            <% @new_product.errors.full_messages.each do |msg| %>
-            <li style="color: red">
-              <%= msg %>
-            </li>
-            <% end %>
-          </ul>
-        <% end %>
+        <%= f.submit 'Update' %>
       </td>
     </tr>
   <table>
 </div>
-
 <% end %>

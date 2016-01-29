@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   after_save :clear_password
 
+  has_many :orders
+
   def encrypt_password
     if password_field.present?
       self.salt = BCrypt::Engine.generate_salt

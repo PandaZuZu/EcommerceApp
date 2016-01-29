@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   attr_accessor :pictures
   serialize :pictures
+  belongs_to :order
 
   mount_uploaders :pictures, ThumbsUploader
 
@@ -8,14 +9,13 @@ class Product < ActiveRecord::Base
             :presence => true,
             :format => {
               :multiline => true,
-              :with => /^[A-z0-9]+$/
+              :with => /^[A-z0-9 ]+$/
             }
 
   validates :description,
             :presence => true,
-            :format => {
-              :multiline => true,
-              :with => /^[A-z0-9]+$/
+            :length => {
+              :maximum => 5000
             }
 
   validates :pictures,

@@ -1,0 +1,23 @@
+<div class="form">
+  <% @all_users.each do |u| %>
+    <% u.orders.each do |o| %>
+      <% o.products.each do |p| %>
+        <div class="cart_left">
+          <table>
+            <tr>
+              <td width = '100px'>
+                <%= u.username %>
+              </td>
+              <td width = '150px'>
+                <%= truncate(p.name, length: 20) %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="cart_right">
+          <%= p.units * p.price %>$
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

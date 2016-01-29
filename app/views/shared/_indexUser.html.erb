@@ -6,8 +6,12 @@
     <%= label_tag product.name %>
     <br>
     <div class="product_thumb_desc">
-      <%= product.description%>
+      <%= truncate(product.description, length: 200)%>
     </div>
+    <br>
+    <% if session[:user_id] != nil %>
+      <%= link_to 'more', controller: 'product', action: 'view', product_id: product.id %>
+    <% end %>
   </div>
   <% end %>
 </div>
